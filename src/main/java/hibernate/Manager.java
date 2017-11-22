@@ -13,6 +13,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.io.File;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 
@@ -167,14 +169,14 @@ class Manager {
             Query query1 = entityManager.createQuery("SELECT k FROM Cars k WHERE k.konie=135");
             List<Cars> Car1 = query1.getResultList();
             for (int i = 0; i < Car1.size(); i++) {
-                System.out.println(Carx.get(i).getCena());
+                System.out.println(Car1.get(i).getCena());
             }
             //wypisz ceny samochodow o id=1
             System.out.println("Ceny samochodów o id=1:");
             Query query2 = entityManager.createQuery("SELECT k FROM Cars k WHERE k.id=1");
             List<Cars> Car2 = query2.getResultList();
             for (int i = 0; i < Car2.size(); i++) {
-                System.out.println(Carx.get(i).getCena());
+                System.out.println(Car2.get(i).getCena());
             }
 
             //wypisz wszystko o samochodzie BMW
@@ -182,12 +184,12 @@ class Manager {
             Query query3 = entityManager.createQuery("SELECT k FROM Cars k WHERE k.marka='BMW'");
             List<Cars> Car3 = query3.getResultList();
             for (int i = 0; i < Car3.size(); i++) {
-                System.out.println(Carx.get(i).getId());
-                System.out.println(Carx.get(i).getMarka());
-                System.out.println(Carx.get(i).getModel());
-                System.out.println(Carx.get(i).getCena());
-                System.out.println(Carx.get(i).getRocznik());
-                System.out.println(Carx.get(i).getKonie());
+                System.out.println(Car3.get(i).getId());
+                System.out.println(Car3.get(i).getMarka());
+                System.out.println(Car3.get(i).getModel());
+                System.out.println(Car3.get(i).getCena());
+                System.out.println(Car3.get(i).getRocznik());
+                System.out.println(Car3.get(i).getKonie());
             }
 
             entityManager.close();
