@@ -1,2 +1,2 @@
-before_script: cd Projekt1
+before_script: ls
 language: java
