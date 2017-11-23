@@ -212,10 +212,13 @@ class Manager {
                 System.out.println(Car3.get(i).getKonie());
             }
 
-            entityManager.close();
-            System.out.println("Siema Heniu");
+            System.out.println("Test");
+                    for(int i=0;i<=getAllCarsByPage(3).size();i++)
+                    {
+                        getAllCarsByPage(3).get(i).getRocznik();
+                    }
 
-            getAllCarsByPage(3);
+            entityManager.close();
 
 
         } catch (Throwable ex) {
