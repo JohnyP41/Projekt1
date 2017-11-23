@@ -18,28 +18,6 @@ import java.util.List;
 
 class Manager {
 
-    public static List<Cars> getAllCarsByPage(int pagenr) {
-
-        EntityManager entityManager = null;
-        //calculate total number
-        Query queryTotal = entityManager.createQuery
-                ("Select count(f) from Cars f");
-        long countResult = (long) queryTotal.getSingleResult();
-
-        //create query
-        Query query = entityManager.createQuery("Select e FROM Cars e");
-        //set pageSize
-        int pageSize = 10;
-        //calculate number of pages
-        int pageNumber = (int) ((countResult / pageSize) + 1);
-
-        if (pagenr > pageNumber) pagenr = pageNumber;
-        query.setFirstResult((pagenr - 1) * pageSize);
-        query.setMaxResults(pageSize);
-
-        return query.getResultList();
-    }
-
     public static void main(String[] args) {
 
         BasicConfigurator.configure();
@@ -85,7 +63,7 @@ class Manager {
             car2.setMarka("Toyota");
             car2.setModel("Carina");
             car2.setCena(23000);
-            car2.setRocznik("2010-01-03)");
+            car2.setRocznik("2010-01-03");
             car2.setKonie(100);
 
             entityManager.merge(car2);
@@ -212,11 +190,21 @@ class Manager {
                 System.out.println(Car3.get(i).getKonie());
             }
 
-            System.out.println("Test");
-                    for(int i=0;i<=getAllCarsByPage(3).size();i++)
-                    {
-                        getAllCarsByPage(3).get(i).getRocznik();
-                    }
+            //Zapytanie zwracajace stronnicowane dane
+            Query queryl = entityManager.createQuery("SELECT COUNT(k.id) FROM Cars k");
+            int pageNumber = 1;
+            int pageSize = 3;
+            query.setFirstResult((pageNumber-1) * pageSize);
+            query.setMaxResults(pageSize);
+            List <Cars> xdL = query.getResultList();
+            for (int i = 0; i <xdL.size(); i++) {
+                System.out.println(xdL.get(i).getId());
+                System.out.println(xdL.get(i).getMarka());
+                System.out.println(xdL.get(i).getModel());
+                System.out.println(xdL.get(i).getCena());
+                System.out.println(xdL.get(i).getRocznik());
+                System.out.println(xdL.get(i).getKonie());
+            }
 
             entityManager.close();
 
