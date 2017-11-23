@@ -191,6 +191,7 @@ class Manager {
             }
 
             //Zapytanie zwracajace stronnicowane dane
+            System.out.println("Wypisz wszystko o 3 samochodach:");
             Query queryl = entityManager.createQuery("SELECT COUNT(k.id) FROM Cars k");
             int pageNumber = 1;
             int pageSize = 3;

@@ -48,6 +48,38 @@ public class Cars {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Cars> cars = new ArrayList<Cars>();
 
+    public Owners getOwners() {
+        return owners;
+    }
+
+    public void setOwners(Owners owners) {
+        this.owners = owners;
+    }
+
+    public Kolor getKolors() {
+        return kolors;
+    }
+
+    public void setKolors(Kolor kolors) {
+        this.kolors = kolors;
+    }
+
+    public List<Cars> getWlasciciel() {
+        return wlasciciel;
+    }
+
+    public void setWlasciciel(List<Cars> wlasciciel) {
+        this.wlasciciel = wlasciciel;
+    }
+
+    public List<Cars> getCars() {
+        return cars;
+    }
+
+    public void setCars(List<Cars> cars) {
+        this.cars = cars;
+    }
+
     public Cars() {
         this.marka = marka;
         this.model = model;
