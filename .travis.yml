@@ -1,2 +1,2 @@
-before_script: ls
+before_script: 
 language: java
