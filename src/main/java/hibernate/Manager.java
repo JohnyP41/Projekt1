@@ -130,7 +130,7 @@ class Manager {
 
             //Deserializacja z jsona
             ObjectMapper mapperx = new ObjectMapper();
-            List<Cars> xd = mapperx.readValue(new File("j:\\Desktop\\xd.json"), new TypeReference<List<Cars>>() {});
+            List<Cars> xd = mapperx.readValue(new File("xd.json"), new TypeReference<List<Cars>>() {});
 
             Cars car7 = new Cars();
             for (int i = 0; i < xd.size(); i++) {
@@ -145,7 +145,7 @@ class Manager {
 
             //Deserializacja z xml
             XmlMapper pl = new XmlMapper();
-            List<Cars> mama = pl.readValue(new File("j:\\Desktop\\xd.xml"), new TypeReference<List<Cars>>() {});
+            List<Cars> mama = pl.readValue(new File("xd.xml"), new TypeReference<List<Cars>>() {});
 
             Cars car8 = new Cars();
             for (int i = 0; i < mama.size(); i++) {
@@ -178,11 +178,11 @@ class Manager {
 
             //zapisz wszystko do jsona - serializacja
             ObjectMapper mapper = new ObjectMapper();
-            mapper.writeValue(new File("j:\\Desktop\\wszystko.json"), Carx);
+            mapper.writeValue(new File("wszystko.json"), Carx);
 
             //zapisz wszystko do xmla - serializacja
             XmlMapper xmlMapper = new XmlMapper();
-            xmlMapper.writeValue(new File("j:\\Desktop\\wszystko.xml"), Carx);
+            xmlMapper.writeValue(new File("wszystko.xml"), Carx);
 
             //wypisz ceny samochodow o liczbie KM=135
             System.out.println("Ceny samochodów o liczbie KM=135:");
