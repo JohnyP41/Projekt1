@@ -18,6 +18,28 @@ import java.util.List;
 
 class Manager {
 
+    public static List<Cars> getAllCarsByPage(int pagenr) {
+
+        EntityManager entityManager = null;
+        //calculate total number
+        Query queryTotal = entityManager.createQuery
+                ("Select count(f) from Cars f");
+        long countResult = (long) queryTotal.getSingleResult();
+
+        //create query
+        Query query = entityManager.createQuery("Select e FROM Cars e");
+        //set pageSize
+        int pageSize = 10;
+        //calculate number of pages
+        int pageNumber = (int) ((countResult / pageSize) + 1);
+
+        if (pagenr > pageNumber) pagenr = pageNumber;
+        query.setFirstResult((pagenr - 1) * pageSize);
+        query.setMaxResults(pageSize);
+
+        return query.getResultList();
+    }
+
     public static void main(String[] args) {
 
         BasicConfigurator.configure();
@@ -191,6 +213,10 @@ class Manager {
             }
 
             entityManager.close();
+            System.out.println("Siema Heniu");
+
+            getAllCarsByPage(3);
+
 
         } catch (Throwable ex) {
             // Make sure you log the exception, as it might be swallowed
